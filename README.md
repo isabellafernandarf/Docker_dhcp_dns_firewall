@@ -215,7 +215,7 @@ Executar o contêiner DHCP:
 # 2.2. DNS:
 
 Construir a imagem do servidor DNS:
-    docker build -t dns_server -f Dockerfile.dns .
+    docker buildx build -t dns_server -f Dockerfile.dns .
 
 Executar o contêiner DNS:
     docker run -d --name dns_container dns_server
