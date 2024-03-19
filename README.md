@@ -243,6 +243,10 @@ Verificar o status do servidor DNS:
 
 Realizar consultas de resolução de nomes de domínio:
     docker exec -it dns_container nslookup example.com
+    docker exec dns_container nslookup example.com
+    docker exec dns_container dig example.com
+    docker exec dns_container ping -c 4 example.com
+
 
 # 3.3. Teste de Firewall:
 
