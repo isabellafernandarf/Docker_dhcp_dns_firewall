@@ -1,19 +1,27 @@
 FROM ubuntu:latest
 
-# Abrindo a porta 67 para o DHCP
-RUN apt-get update && apt-get install -y isc-dhcp-client
-RUN apt install net-tools -y
+# Instalar pacotes necessários
+RUN apt-get update && \
+    apt-get install -y isc-dhcp-server net-tools && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /var/lib/dhcp/ && \
-    touch /var/lib/dhcp/dhcpd.leases && \
-    chmod 666 /var/lib/dhcp/dhcpd.leases
+# Criar diretório de logs do DHCP
+RUN mkdir -p /var/log/dhcp/
 
 # Configurar o servidor DHCP
-COPY ./dhcpd.conf /etc/dhcp/dhcpd.conf
+COPY dhcpd.conf /etc/dhcp/dhcpd.conf
 
+# Redirecionar logs do DHCP para /var/log/dhcp/dhcpd.log
+RUN touch /var/log/dhcp/dhcpd.log && \
+    chmod 666 /var/log/dhcp/dhcpd.log && \
+    ln -sf /dev/stdout /var/log/dhcp/dhcpd.log
+
+# Expor porta UDP 67
 EXPOSE 67/udp
 
 # Comando para iniciar o DHCP
 CMD ["dhcpd", "-f", "-d", "--no-pid"]
+
 
 
