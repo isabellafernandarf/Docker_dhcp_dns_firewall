@@ -238,14 +238,15 @@ Conectar um cliente à rede e verificar se obtém um endereço IP atribuído pel
 
 # 3.2. Teste de DNS:
 
-Verificar o status do servidor DNS:
-    docker exec -it dns_container service bind9 status
-
 Realizar consultas de resolução de nomes de domínio:
-    docker exec -it dns_container nslookup example.com
-    docker exec dns_container nslookup example.com
-    docker exec dns_container dig example.com
-    docker exec dns_container ping -c 4 example.com
+      nslookup example.com
+       dig example.com
+        host example.com 
+
+Para instalar os requisitos acima: 
+
+apt-get update
+apt-get install dnsutils -y
 
 
 # 3.3. Teste de Firewall:
