@@ -10,7 +10,7 @@ RUN apt-get update && \
 RUN mkdir -p /var/log/dhcp/
 
 # Configurar o servidor DHCP
-COPY config/dhcpd.conf /etc/dhcp/dhcpd.conf
+COPY configs/dhcpd.conf /etc/dhcp/dhcpd.conf
 
 # Redirecionar logs do DHCP para /var/log/dhcp/dhcpd.log
 RUN touch /var/log/dhcp/dhcpd.log && \
