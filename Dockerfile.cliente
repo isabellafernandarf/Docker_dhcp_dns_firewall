@@ -1,27 +1,10 @@
 FROM ubuntu:latest
 
-# Instalar pacotes necessários
-RUN apt-get update && \
-    apt-get install -y isc-dhcp-server net-tools && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Instalando o cliente DHCP e o utilitário net-tools (para o comando ifconfig) e iputils-ping (para o comando ping) e dnsutils (para o comando nslookup)
+RUN apt-get update && apt-get install -y isc-dhcp-client
+RUN apt install net-tools -y
+RUN apt install iputils-ping -y
+RUN apt install dnsutils -y
 
-# Criar diretório de logs do DHCP
-RUN mkdir -p /var/log/dhcp/
-
-# Configurar o servidor DHCP
-COPY configs/dhcpd.conf /etc/dhcp/dhcpd.conf
-
-# Redirecionar logs do DHCP para /var/log/dhcp/dhcpd.log
-RUN touch /var/log/dhcp/dhcpd.log && \
-    chmod 666 /var/log/dhcp/dhcpd.log && \
-    ln -sf /dev/stdout /var/log/dhcp/dhcpd.log
-
-# Expor porta UDP 67
-EXPOSE 67/udp
-
-# Comando para iniciar o DHCP
-CMD ["dhcpd", "-f", "-d", "--no-pid"]
-
-
-
+# Fazendo uma requisição de IP para o servidor DHCP (eth0 é a interface de rede do container)
+CMD [ "dhclient", "-v", "eth0"]
