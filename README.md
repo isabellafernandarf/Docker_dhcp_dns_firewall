@@ -236,6 +236,9 @@ Verificar o status do servidor DHCP:
 
 Conectar um cliente à rede e verificar se obtém um endereço IP atribuído pelo DHCP.
 
+file:///home/isabellafernandarf/%C3%81rea%20de%20trabalho/Captura%20de%20tela%20em%202024-04-01%2020-33-18.png![image](https://github.com/isabellafernandarf/Docker_dhcp_dns_firewall/assets/110735290/92ad4495-e7aa-4ae2-b7d3-24a85eeef2e2)
+
+
 # 3.2. Teste de DNS:
 
 Realizar consultas de resolução de nomes de domínio:
@@ -247,6 +250,7 @@ Para instalar os requisitos acima:
 
 apt-get update
 apt-get install dnsutils -y
+file:///home/isabellafernandarf/%C3%81rea%20de%20trabalho/Captura%20de%20tela%20em%202024-04-01%2020-38-09.png![image](https://github.com/isabellafernandarf/Docker_dhcp_dns_firewall/assets/110735290/48b5f771-a05d-43ec-9f28-dd9614bcf1b4)
 
 
 # 3.3. Teste de Firewall:
@@ -255,6 +259,9 @@ Verificar o status do firewall:
     docker exec -it firewall_container iptables -L
 };
 
+file:///home/isabellafernandarf/%C3%81rea%20de%20trabalho/Captura%20de%20tela%20em%202024-04-01%2020-38-37.png![image](https://github.com/isabellafernandarf/Docker_dhcp_dns_firewall/assets/110735290/a5e16937-bf1d-41c2-a8c1-9766e2255631)
+
+file:///home/isabellafernandarf/%C3%81rea%20de%20trabalho/Captura%20de%20tela%20em%202024-04-01%2020-38-50.png![image](https://github.com/isabellafernandarf/Docker_dhcp_dns_firewall/assets/110735290/a734d562-0920-4e8a-8cb9-70995a79bca8)
 
 
 
